@@ -16,12 +16,13 @@ $(document).ready(function () { //sets up the document
             createSearch();
             createEmployeeRolodex();
             createModalCardPopup();
+            createModalBtnContainer();
 
             $(".card").on("click", function () { //allows for the modal to appear on the screen after its clicked on.
                 let myIndex = $(this).attr("index");
                 currentIndex = myIndex;
                 populateModalCardPopup(currentIndex);
-                $(".modal-container").show(); 
+                $(".modal-container").show();
             });
 
             $("#modal-close-btn").on("click", function () { // the ability to close the modal window
@@ -44,13 +45,14 @@ $(document).ready(function () { //sets up the document
                 populateModalCardPopup(currentIndex);
             });
 
-        $("#modal-next").on("click", function () { //once a user is selected you can toggle between users Exta-Credit
+            $("#modal-next").on("click", function () { //once a user is selected you can toggle between users Exta-Credit
                 currentIndex = parseInt(currentIndex) + 1;
                 if (currentIndex > 11);
                 currentIndex = 11;
                 populateModalCardPopup(currentIndex);
             });
         }
+        
     });
 
 
@@ -78,9 +80,9 @@ $(document).ready(function () { //sets up the document
     function createModalCardPopup() { //Provides a pop up for each employee with more detailed info.
         let modalCardPopup =
             ` <div class="modal-container">
-    <div class="modal">
-        <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
-        <div class="modal-info-container">
+             <div class="modal">
+            <button type="button" id="modal-close-btn" class="modal-close-btn"><strong>X</strong></button>
+            <div class="modal-info-container">
             <img class="modal-img" src="https://placehold.it/125x125" alt="profile picture">
             <h3 id="name" class="modal-name cap">name</h3>
             <p class="modal-text">email</p>
@@ -89,11 +91,24 @@ $(document).ready(function () { //sets up the document
             <p class="modal-text">(555) 555-5555</p>
             <p class="modal-text">123 Portland Ave., Portland, OR 97204</p>
             <p class="modal-text">Birthday: 10/21/2015</p>
-        </div>
-    </div>`;
+            </div>
+            </div>`
+        
         gallery.after(modalCardPopup);
+        
 
         $(".modal-container").hide();
+    }
+
+    function createModalBtnContainer() { //gives the modal a previous and next functionality. Extra Credit.
+        let modalBtnContainer=
+         `<div class="modal-btn-container">
+                     <button type="button" id="modal-prev" class="modal-prev btn">Prev</button>
+                     <button type="button" id="modal-next" class="modal-next btn">Next</button>
+                 </div>`;
+        $(".modal-container").append(modalBtnContainer);
+        //$(".modal-btn-container").show();
+
     }
 
     function createSearch() { //Gives the search box functionality.
@@ -101,7 +116,7 @@ $(document).ready(function () { //sets up the document
             `<form action="#" method="get">
             <input type="search" id="search-input" class="search-input" placeholder="Search...">
              <input type="submit" value="&#x1F50D;" id="search-submit" class="search-submit">
-        </form>`;
+            </form>`;
         $(".search-container").append(search);
 
     }
@@ -123,4 +138,5 @@ $(document).ready(function () { //sets up the document
         $(".modal-text")[4].innerText = "Birthday: " + month + "/" + day + "/" + year;
 
     }
+
 });
