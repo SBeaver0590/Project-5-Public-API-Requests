@@ -41,14 +41,14 @@ $(document).ready(function () { //sets up the document
             $("#modal-prev").on("click", function () { //once a user is selected you can toggle between users Exta-Credit
                 currentIndex = parseInt(currentIndex) - 1;
                 if (currentIndex < 0)
-                    currentIndex = 0;
+                    currentIndex = employeeRolodex.length;
                 populateModalCardPopup(currentIndex);
             });
 
             $("#modal-next").on("click", function () { //once a user is selected you can toggle between users Exta-Credit
                 currentIndex = parseInt(currentIndex) + 1;
-                if (currentIndex > 11);
-                currentIndex = 11;
+                if (currentIndex > employeeRolodex.length)
+                currentIndex = 0;
                 populateModalCardPopup(currentIndex);
             });
         }
